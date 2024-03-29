@@ -1,0 +1,10 @@
+{% extends 'index.html' %} {% block main %}
+<main class="login">
+  <p>Login</p>
+  <form method="POST" autocomplete="off">
+    {% csrf_token %} {{ login_form }}
+    <input type="submit" value="Login" class="login_button" />
+  </form>
+  <a href="{% url 'signup' %}" class="create_account">Create a account</a>
+</main>
+{% endblock %}

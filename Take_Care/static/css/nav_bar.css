@@ -1,0 +1,127 @@
+.main_nav {
+  width: 100%;
+  height: 4rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+.nav {
+  width: 100%;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+.nav .kick_off {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: large;
+  text-decoration: none;
+  color: black;
+}
+
+.nav #toggle_slider {
+  background-color: transparent;
+  border: none;
+  color: black;
+}
+
+.nav #toggle_slider {
+  cursor: pointer;
+}
+
+.nav .nav_right_side {
+  display: none;
+}
+
+.slider {
+  width: 100%;
+  height: calc(100dvh - 4rem);
+  position: absolute;
+  top: -100dvh;
+  left: 0;
+  transition: top 0.5s ease;
+  z-index: 9;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.slider .slider_buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  text-decoration: none;
+  color: black;
+  font-size: small;
+}
+
+.slider .slider_buttons svg:last-child {
+  margin-left: auto;
+}
+
+@media (min-width: 640px) {
+  .nav,
+  .slider .slider_buttons {
+    padding-inline: 5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav,
+  .slider .slider_buttons {
+    padding-inline: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav,
+  .slider .slider_buttons {
+    padding-inline: 7rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .nav {
+    padding-inline: 10rem;
+  }
+
+  .nav #toggle_slider {
+    display: none;
+  }
+
+  .nav .nav_right_side {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav_right_side .nav_right_side_buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: black;
+    font-size: smaller;
+  }
+}
+
+@media (min-width: 1536px) {
+  .nav {
+    padding-inline: 11rem;
+  }
+}

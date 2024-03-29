@@ -1,0 +1,78 @@
+.signup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.signup .signup_title {
+  align-self: center;
+  font-weight: bold;
+}
+
+.signup form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.signup form .errorlist {
+  font-size: small;
+  color: rgb(223, 62, 62);
+}
+
+.signup form label {
+  font-size: smaller;
+  font-weight: 600;
+}
+
+.signup form input {
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid grey;
+  border-radius: 0.3rem;
+  outline: none;
+  margin-top: 0.5rem;
+}
+
+.signup form .helptext {
+  font-size: small;
+}
+
+.signup form ul {
+  padding-inline: 1rem;
+}
+
+.signup .signup_button {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  border-radius: 0.3rem;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(223, 62, 62);
+}
+
+.signup .signup_button:hover {
+  cursor: pointer;
+}
+
+.signup .login_here {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: small;
+}
+
+.signup .login_here a {
+  text-decoration: none;
+}
+
+@media (min-width: 640px) {
+  .signup {
+    width: 25rem;
+    padding-inline: 3rem;
+    margin: 1rem auto;
+    background-color: whitesmoke;
+  }
+}

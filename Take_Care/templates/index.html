@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/nav_bar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search_bar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/book_now.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/create_posts.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/show_interest.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/interest_showed.css' %}" />
+  </head>
+  <body>
+    {% include 'nav_bar.html' %} {% block main %}
+    <main id="main" class="main">
+      {% include 'search_bar.html'%}
+      <div class="cards-list">
+        {% for post in posts %}
+        <!-- To Show Events -->
+        <a href="{% url page_url id=post.id %}" class="card">
+          <img src="{% static 'images/poster.jpg' %}" class="poster" />
+          <div class="card_details">
+            <p>{{ post.updated }}</p>
+            <p>{{ post.pet_name }}</p>
+            <p>{{ post.pet_age }}</p>
+            <p>{{ post.pet_category }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </main>
+    {% endblock %}
+  </body>
+  <script src="{% static 'js/index.js' async %}"></script>
+</html>

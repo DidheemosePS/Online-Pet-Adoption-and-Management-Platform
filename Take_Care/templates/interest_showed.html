@@ -1,0 +1,26 @@
+{% extends 'index.html' %} {% block main %}
+<main class="booked_tickets_main">
+  <p class="booked_order_summary_title">ORDER SUMMARY</p>
+  {{ interested_posts }} {% for ticket in '123' %}
+  <a href="{% url '' %}" class="booked_order_summary_details">
+    <div class="purchase_date">
+      <p class="date">Purchased on<br />{{ ticket.ticket_created }}</p>
+      <div class="booked_ticket_count">
+        <p class="count">{{ ticket.number_of_tickets }}</p>
+        <p>Tickets</p>
+      </div>
+    </div>
+    <div class="booked_ticket_details">
+      <p>{{ ticket.event_name }}</p>
+      <p>{{ ticket.event_venue_name }}</p>
+      <p>{{ ticket.event_date }}</p>
+      <p>{{ ticket.event_time }}</p>
+    </div>
+  </a>
+  <div class="amount_paid">
+    <p>{{ text }}</p>
+    <p>{{ ticket.ticket_price }}</p>
+  </div>
+  {% endfor %}
+</main>
+{% endblock %}

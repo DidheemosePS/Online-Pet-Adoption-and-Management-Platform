@@ -1,0 +1,108 @@
+{% extends 'index.html' %} {% load static %} {% block main %}
+<main class="book_now_main">
+  <img src="{% static 'images/DJ.jpg' %}" />
+  <div class="book_now_left">
+    <div>
+      <p class="date_time">{{ post_details.updated }}</p>
+
+      <!-- Show the bookmark only to the participants -->
+
+      {% if request.user.is_authenticated and not request.user.id == post_details.owner_id %}
+      <button
+        id="bookmark_icon"
+        class="bookmark_check"
+        onclick="save_this_post({'id': '{{ post_details.id }}' })"
+      >
+        <!-- if condition to check whether the user is bookmark or not -->
+
+        {% if saved %}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-bookmark-check"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"
+          />
+          <path
+            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
+          />
+        </svg>
+        {% else %}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-bookmark"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
+          />
+        </svg>
+        {% endif %}
+      </button>
+      {% endif %}
+    </div>
+    <div>
+      <p class="own_name">{{ post_details.owner_name }}</p>
+      <p class="pet_name">{{ post_details.pet_name }}</p>
+      <p class="pet_age">{{ post_details.pet_age }}</p>
+      <p class="pet_category">{{ post_details.pet_category }}</p>
+      <div class="pet_address">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-geo"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.3 1.3 0 0 0-.37.265.3.3 0 0 0-.057.09V14l.002.008.016.033a.6.6 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.6.6 0 0 0 .146-.15l.015-.033L12 14v-.004a.3.3 0 0 0-.057-.09 1.3 1.3 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465s-2.462-.172-3.34-.465c-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411"
+          />
+        </svg>
+        <p class="pet_address">{{ post_details.pet_address }}</p>
+      </div>
+    </div>
+    <p class="pet_description">{{ post_details.pet_description }}</p>
+  </div>
+
+  <!-- Show the booknow only to the participants -->
+  {% if request.user.is_authenticated and not request.user.id == post_details.owner_id %}
+  <button
+    id="confirm_interest"
+    onclick="show_interest({'id': '{{ post_details.id }}','owner':'{{ post_details.owner_id }}' })"
+    class="book_tickets"
+  >
+    {% if interested %} Remove Interest {% else %} Show Interest {% endif %}
+  </button>
+  {% endif %}
+
+  <!-- The Edit, Delete button will be shown when the uploaded organisation is logged in by checking request.user.is_organisation and request.user.id == organisation_id -->
+
+  {% if request.user.is_authenticated and request.user.id == post_details.owner_id %}
+  <div class="edit_delete_book_tickets">
+    <a
+      class="edit_button"
+      href="{% url 'edit_created_post' id=post_details.id %}"
+    >
+      <p>Edit this event</p>
+    </a>
+    <a
+      class="delete_button"
+      href="{% url 'delete_created_post' id=post_details.id %}"
+      onclick="return delete_event_alert()"
+    >
+      <p>Delete this event</p>
+    </a>
+  </div>
+  {% endif %}
+</main>
+{% endblock %}
