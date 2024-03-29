@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{% static 'css/nav_bar.css' %}" />
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
     <link rel="stylesheet" href="{% static 'css/search_bar.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/book_now.css' %}" />
     <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
     <link rel="stylesheet" href="{% static 'css/create_posts.css' %}" />
@@ -23,7 +22,7 @@
         {% for post in posts %}
         <!-- To Show Events -->
         <a href="{% url page_url id=post.id %}" class="card">
-          <img src="{% static 'images/poster.jpg' %}" class="poster" />
+          <img src="{{ post.pet_image_url }}" class="poster" />
           <div class="card_details">
             <p>{{ post.updated }}</p>
             <p>{{ post.pet_name }}</p>

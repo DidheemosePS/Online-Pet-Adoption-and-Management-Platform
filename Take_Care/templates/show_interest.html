@@ -1,6 +1,6 @@
 {% extends 'index.html' %} {% load static %} {% block main %}
 <main class="book_now_main">
-  <img src="{% static 'images/DJ.jpg' %}" />
+  <img src="{{ post_details.pet_image_url }}" />
   <div class="book_now_left">
     <div>
       <p class="date_time">{{ post_details.updated }}</p>

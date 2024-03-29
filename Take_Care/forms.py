@@ -43,10 +43,10 @@ class CreatePostsForm(forms.ModelForm):
         required=True,
         widget=forms.Textarea(attrs={'rows': 5})
     )
-    # pet_image = forms.FileField(label="Image", required=True, widget=forms.FileInput(
-    #     attrs={'type': "file", 'accept': "image/png, image/jpeg"}))
+    pet_image = forms.FileField(label="Image", required=True, widget=forms.FileInput(
+        attrs={'type': "file", 'accept': "image/png, image/jpeg"}))
 
     class Meta:
         model = Post
         fields = ['owner_name', 'pet_name', 'pet_category',
-                  'pet_age', 'pet_description', 'pet_address']
+                  'pet_age', 'pet_description', 'pet_address', 'pet_image']

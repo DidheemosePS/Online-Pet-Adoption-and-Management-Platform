@@ -25,8 +25,16 @@ SECRET_KEY = 'django-insecure-g8h9r08bp_5dihttd=k!$q!ggm%3x1ebvc14s!d)+^+(5#11yk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'www.welcome.take.care@gmail.com'
+EMAIL_HOST_PASSWORD = 'susf ralq deom tdhz'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+ALLOWED_HOSTS = ['e951283307344cda86f5d9b107401615.vfs.cloud9.eu-west-1.amazonaws.com']
+
+CSRF_TRUSTED_ORIGINS = ['https://e951283307344cda86f5d9b107401615.vfs.cloud9.eu-west-1.amazonaws.com']
 
 # Application definition
 
@@ -118,20 +126,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    'D:/Works/Django/Pet_Adoption_Platform/Take_Care_Django/Take_Care/static',
-]
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# REMOVE DEBUG IN PRODUCTION
-DEBUG = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'www.welcome.take.care@gmail.com'
-EMAIL_HOST_PASSWORD = 'susf ralq deom tdhz'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

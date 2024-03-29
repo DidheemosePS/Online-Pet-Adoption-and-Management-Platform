@@ -4,19 +4,20 @@ from django.http import HttpResponse, JsonResponse
 from .models import Post, Saved, Interested, User
 from django.shortcuts import render, redirect
 from django.shortcuts import redirect, render
-from . forms import SignupForm, LoginForm, CreatePostsForm
+from .forms import SignupForm, LoginForm, CreatePostsForm
 from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Max, Q
 from django.urls import reverse
 from django.core.mail import EmailMessage
-
+from .s3 import upload_file
+import mimetypes
 
 def index(request):
     # event_date___gte used to find the events available in future, To avoid the expried events and __gte means '>='
     posts = Post.objects.filter().values(
-        'id', 'pet_name', 'pet_category', 'pet_age', 'owner', 'updated').order_by('-updated')
+        'id', 'pet_name', 'pet_category', 'pet_age', 'pet_image_url', 'owner', 'updated').order_by('-updated')
     for post in posts:
         post['updated'] = post['updated'].date()
     return render(request, 'index.html', {'title': 'Take Care', 'page_url': "show_interest", 'posts': posts})
@@ -35,7 +36,7 @@ def show_interest(request, id):
     # event_date___gte used to find the events available in future, To avoid the expried events and __gte means '>='
     post_details = Post.objects.filter(id=id).values()
     if not post_details:
-        return HttpResponse("This event is not available")
+        return HttpResponse("This post is not available")
     saved = Saved.objects.filter(
         owner=request.user, post=Post.objects.get(pk=id)).values()
     interested = Interested.objects.filter(
@@ -92,12 +93,16 @@ def interest_showed(request):
 @login_required(login_url="login")
 def create_posts(request):
     if request.method == 'POST':
-        form = CreatePostsForm(request.POST)
+        form = CreatePostsForm(request.POST, request.FILES)
         if form.is_valid():
+            pet_image = request.FILES['pet_image']
+            image_key = f"take_care/images/{pet_image}"
+            content_type = mimetypes.guess_type(pet_image.name)[0]
+            pet_image_response = upload_file(pet_image, 'x23176245-s3-bucket', image_key, content_type)
             create_post = form.save(commit=False)
             create_post.owner_name = request.user
             create_post.owner = request.user
-            create_post.pet_image_url = "https://stytch.com/?utm_source=carbon&utm_medium=paid_sponsorship&utm_content=creative2&utm_campaign=carbon-display-q1-2024"
+            create_post.pet_image_url = pet_image_response['object_url']
             create_post.save()
             return redirect('posts_created_by_you')
     form = CreatePostsForm()

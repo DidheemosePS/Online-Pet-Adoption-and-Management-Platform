@@ -1,7 +1,7 @@
 {% extends 'index.html' %} {% block main %}
 <main class="create_events">
   <p>Create an event</p>
-  <form method="POST" autocomplete="off">
+  <form method="POST" enctype="multipart/form-data" autocomplete="off">
     {% csrf_token %} {{ create_posts_form }}
     <input
       type="submit"
