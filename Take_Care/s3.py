@@ -15,10 +15,10 @@ def creating_s3_bucket(bucket_name, region):
         s3_client = boto3.client('s3', region_name=region)
         location = {'LocationConstraint': region}
         s3_client.create_bucket(Bucket=bucket_name, CreateBucketConfiguration=location)
+        return True
     except ClientError as e:
         logging.error(e)
         return False
-    return True
     
 creating_s3_bucket('x23176245-s3-bucket', 'eu-west-1')
 
@@ -32,3 +32,11 @@ def upload_file(file, bucket_name, file_key, content_type):
         logging.error(e)
         return False
     
+def delete_file(bucket_name, file_key):
+    try:
+        s3_client = boto3.client('s3')
+        s3_client.delete_object(Bucket=bucket_name, Key=file_key)
+        return True
+    except ClientError as e:
+        logging.error(e)
+        return False

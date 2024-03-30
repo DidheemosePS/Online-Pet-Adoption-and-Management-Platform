@@ -50,3 +50,8 @@ class CreatePostsForm(forms.ModelForm):
         model = Post
         fields = ['owner_name', 'pet_name', 'pet_category',
                   'pet_age', 'pet_description', 'pet_address', 'pet_image']
+                  
+    def __init__(self, *args, **kwargs):
+        super(CreatePostsForm, self).__init__(*args, **kwargs)
+        if 'instance' in kwargs:
+            self.fields['pet_image'].required = False

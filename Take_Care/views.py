@@ -11,8 +11,9 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Max, Q
 from django.urls import reverse
 from django.core.mail import EmailMessage
-from .s3 import upload_file
+from .s3 import upload_file, delete_file
 import mimetypes
+from urllib.parse import urlparse
 
 def index(request):
     # event_date___gte used to find the events available in future, To avoid the expried events and __gte means '>='
@@ -27,7 +28,7 @@ def search(request):
     search_value = request.GET.get('search_query')
     # Q is used to perform OR logical operation
     search_result = Post.objects.filter(Q(owner_name__icontains=search_value) | Q(pet_name__icontains=search_value) | Q(pet_category__icontains=search_value) | Q(pet_age__icontains=search_value)).values(
-        'id', 'pet_name', 'pet_category', 'pet_age', 'owner', 'updated').order_by('-updated')
+        'id', 'pet_name', 'pet_category', 'pet_age', 'pet_image_url', 'owner', 'updated').order_by('-updated')
     return render(request, 'index.html', {'title': 'Search - Take Care', 'page_url': "show_interest", 'posts': search_result})
 
 
@@ -80,7 +81,7 @@ def logout(request):
 def interest_showed(request):
     fetch_interest_showed = Post.objects.filter(
         interested_posts__owner=request.user).values(
-        'id', 'pet_name', 'pet_category', 'pet_age', 'owner', 'updated').annotate(
+        'id', 'pet_name', 'pet_category', 'pet_age', 'pet_image_url', 'owner', 'updated').annotate(
         order_by_interested=Max('interested_posts__updated')
     ).order_by('-order_by_interested')
     if not fetch_interest_showed:
@@ -130,7 +131,7 @@ def save_this_post(request):
 def saved_posts(request):
     fetch_saved_posts = Post.objects.filter(
         saved_posts__owner=request.user).values(
-        'id', 'pet_name', 'pet_category', 'pet_age', 'owner', 'updated').order_by('-updated')
+        'id', 'pet_name', 'pet_category', 'pet_age', 'pet_image_url', 'owner', 'updated').order_by('-updated')
     if not fetch_saved_posts:
         return HttpResponse('No saved events')
     for post in fetch_saved_posts:
@@ -140,7 +141,8 @@ def saved_posts(request):
 
 @login_required(login_url="login")
 def posts_created_by_you(request):
-    fetch_posts_created_by_you = Post.objects.filter(owner=request.user)
+    fetch_posts_created_by_you = Post.objects.filter(owner=request.user).values(
+        'id', 'pet_name', 'pet_category', 'pet_age', 'pet_image_url', 'owner', 'updated').order_by('-updated')
     if not fetch_posts_created_by_you:
         return HttpResponse('No posts created')
     return render(request, 'index.html', {'titles': 'Created Posts - Take Care', 'page_url': 'show_interest', 'posts': fetch_posts_created_by_you})
@@ -176,8 +178,16 @@ def confirm_interest(request):
 def edit_created_post(request, id):
     post_edit = Post.objects.filter(owner=request.user, id=id)[0]
     if request.method == 'POST':
-        form = CreatePostsForm(request.POST, instance=post_edit)
+        form = CreatePostsForm(request.POST, request.FILES, instance=post_edit)
         if form.is_valid():
+            if 'pet_image' in form.changed_data and form.cleaned_data['pet_image']:
+                image_key = urlparse(post_edit.pet_image_url).path.lstrip('/')
+                delete_file('x23176245-s3-bucket', image_key)
+                pet_image = request.FILES['pet_image']
+                image_key = f"take_care/images/{pet_image}"
+                content_type = mimetypes.guess_type(pet_image.name)[0]
+                pet_image_response = upload_file(pet_image, 'x23176245-s3-bucket', image_key, content_type)
+                post_edit.pet_image_url = pet_image_response['object_url']
             form.save()
             request.session['previous_page'] = request.META.get(
                 'HTTP_REFERER', '/')
@@ -188,5 +198,8 @@ def edit_created_post(request, id):
 
 @login_required(login_url="login")
 def delete_created_post(request, id):
-    Post.objects.filter(owner=request.user, id=id).delete()
+    post_deleted = Post.objects.filter(owner=request.user, id=id)[0]
+    image_key = urlparse(post_deleted.pet_image_url).path.lstrip('/')
+    delete_file('x23176245-s3-bucket', image_key)
+    post_deleted.delete()
     return redirect('posts_created_by_you')
