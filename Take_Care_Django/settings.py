@@ -33,7 +33,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['e951283307344cda86f5d9b107401615.vfs.cloud9.eu-west-1.amazonaws.com']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://e951283307344cda86f5d9b107401615.vfs.cloud9.eu-west-1.amazonaws.com']
@@ -71,7 +71,7 @@ TEMPLATES = [
         # To access the django_email package templetes 
         'DIRS': [
             os.path.join(project_dir, 'Pet_Adoption_Platform_ENV',
-                         'Lib', 'site-packages', 'django_email', 'templates')
+                         'lib', 'python3.9', 'site-packages', 'django_email', 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
