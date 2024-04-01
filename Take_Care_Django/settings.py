@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,9 +33,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-ALLOWED_HOSTS = ['e951283307344cda86f5d9b107401615.vfs.cloud9.eu-west-1.amazonaws.com']
+ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = ['https://e951283307344cda86f5d9b107401615.vfs.cloud9.eu-west-1.amazonaws.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://e951283307344cda86f5d9b107401615.vfs.cloud9.eu-west-1.amazonaws.com']
 
 # Application definition
 
@@ -60,10 +62,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Take_Care_Django.urls'
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_dir = os.path.dirname(os.path.dirname(current_dir))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # To access the django_email package templetes 
+        'DIRS': [
+            os.path.join(project_dir, 'Pet_Adoption_Platform_ENV',
+                         'Lib', 'site-packages', 'django_email', 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

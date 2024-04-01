@@ -21,7 +21,7 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput())
     password = forms.CharField(widget=PasswordInput())
 
-# # Form to create an event
+# # Form to create an post
 
 
 class CreatePostsForm(forms.ModelForm):

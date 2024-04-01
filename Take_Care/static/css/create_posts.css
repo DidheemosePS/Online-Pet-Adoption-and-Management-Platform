@@ -1,27 +1,27 @@
-.create_events {
+.create_posts {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
 }
 
-.create_events p:first-child {
+.create_posts p:first-child {
   align-self: center;
   font-weight: bold;
 }
 
-.create_events form {
+.create_posts form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.create_events form label {
+.create_posts form label {
   font-size: smaller;
   font-weight: 600;
 }
 
-.create_events form input {
+.create_posts form input {
   width: 100%;
   padding: 0.3rem 0.5rem;
   border: 1px solid grey;
@@ -30,7 +30,7 @@
   margin-top: 0.2rem;
 }
 
-.create_events form #id_pet_description,
+.create_posts form #id_pet_description,
 #id_pet_address {
   width: 100%;
   padding: 0.3rem 0.5rem;
@@ -41,7 +41,7 @@
   font-size: smaller;
 }
 
-.create_events .create_events_button {
+.create_posts .create_posts_button {
   width: 100%;
   height: 2rem;
   border: none;
@@ -52,12 +52,12 @@
   background-color: rgb(223, 62, 62);
 }
 
-.create_events .create_events_button:hover {
+.create_posts .create_posts_button:hover {
   cursor: pointer;
 }
 
 @media (min-width: 640px) {
-  .create_events {
+  .create_posts {
     width: 25rem;
     padding-inline: 3rem;
     margin: 1rem auto;

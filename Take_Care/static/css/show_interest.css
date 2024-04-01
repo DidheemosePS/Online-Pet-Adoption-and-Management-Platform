@@ -1,4 +1,4 @@
-.book_now_main {
+.show_interest_main {
   min-height: calc(100dvh - 4rem);
   display: flex;
   flex-direction: column;
@@ -6,83 +6,83 @@
   padding: 1rem;
 }
 
-.book_now_main img {
+.show_interest_main img {
   width: 100%;
   height: 10rem;
   object-fit: fill;
   border-radius: 0.3rem;
 }
 
-.book_now_main .book_now_left {
+.show_interest_main .show_interest_left {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.book_now_main .book_now_left div:first-child {
+.show_interest_main .show_interest_left div:first-child {
   display: flex;
   justify-content: space-between;
 }
 
-.book_now_main .date_time {
+.show_interest_main .date_time {
   font-size: small;
   color: grey;
 }
 
-.book_now_main .bookmark_check {
+.show_interest_main .bookmark_check {
   border: none;
   background-color: transparent;
   color: rgb(223, 62, 62);
 }
 
-.book_now_main .book_now_left div:nth-child(2) {
+.show_interest_main .show_interest_left div:nth-child(2) {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
   font-size: small;
 }
 
-.book_now_main .bookmark_check:hover {
+.show_interest_main .bookmark_check:hover {
   cursor: pointer;
 }
 
-.book_now_main .own_name::before {
+.show_interest_main .own_name::before {
   content: "Owner: ";
   font-weight: 600;
 }
 
-.book_now_main .pet_name::before {
+.show_interest_main .pet_name::before {
   content: "Pet Name: ";
   font-weight: 600;
 }
 
-.book_now_main .pet_age::before {
+.show_interest_main .pet_age::before {
   content: "Pet Age: ";
   font-weight: 600;
 }
 
-.book_now_main .pet_category::before {
+.show_interest_main .pet_category::before {
   content: "Pet Category: ";
   font-weight: 600;
 }
 
-.book_now_main .pet_address {
+.show_interest_main .pet_address {
   display: flex;
   align-items: center;
   gap: 0.3rem;
   margin-top: 0.5rem;
 }
 
-.book_now_main .pet_address svg {
+.show_interest_main .pet_address svg {
   color: green;
 }
 
-.book_now_main .pet_description,
+.show_interest_main .pet_description,
 .pet_address {
   font-size: small;
 }
 
-.book_now_main .book_tickets {
+.show_interest_main .show_interest {
   border: none;
   border-radius: 0.3rem;
   padding-block: 0.5rem;
@@ -93,17 +93,17 @@
   background-color: rgb(223, 62, 62);
 }
 
-.book_now_main .book_tickets:hover {
+.show_interest_main .show_interest:hover {
   cursor: pointer;
 }
 
-.book_now_main .edit_delete_book_tickets {
+.show_interest_main .edit_delete_show_interest {
   display: flex;
   gap: 0.5rem;
   margin-top: auto;
 }
 
-.book_now_main .edit_delete_book_tickets .edit_button,
+.show_interest_main .edit_delete_show_interest .edit_button,
 .delete_button {
   width: 100%;
   display: flex;
@@ -119,17 +119,13 @@
 }
 
 @media (min-width: 640px) {
-  .book_now_main {
+  .show_interest_main {
     padding-inline: 5rem;
-  }
-
-  .book_now_main .video {
-    height: 15rem;
   }
 }
 
 @media (min-width: 768px) {
-  .book_now_main {
+  .show_interest_main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, max-content);
@@ -137,23 +133,26 @@
     gap: 1.5rem;
   }
 
-  .book_now_main .book_now_left {
+  .show_interest_main img {
+    height: 12rem;
+  }
+
+  .show_interest_main .show_interest_left {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
   }
 
-  .book_now_main .video {
-    height: 20rem;
+  .show_interest_main .pet_description {
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
   }
 
-  .book_now_main .book_tickets,
-  .book_now_main .edit_delete_book_tickets {
+  .show_interest_main .show_interest,
+  .show_interest_main .edit_delete_show_interest {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
@@ -162,35 +161,31 @@
 }
 
 @media (min-width: 1024px) {
-  .book_now_main {
+  .show_interest_main {
     padding-inline: 7rem;
   }
 
-  .book_now_main img {
+  .show_interest_main img {
     height: 16rem;
-  }
-
-  .book_now_main .video {
-    height: 30rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .book_now_main {
+  .show_interest_main {
     padding-inline: 10rem;
   }
 
-  .book_now_main img {
+  .show_interest_main img {
     height: 18rem;
   }
 }
 
 @media (min-width: 1536px) {
-  .book_now_main {
+  .show_interest_main {
     padding-inline: 11rem;
   }
 
-  .book_now_main img {
+  .show_interest_main img {
     height: 20rem;
   }
 }

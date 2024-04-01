@@ -61,7 +61,9 @@ const getCookie = (name) => {
     return cookieValue;
 }
 
-const show_interest = (confirm_interest_data) => {
+const show_interest = (confirm_interest_data, event) => {
+    event.target.disabled = true;
+    document.getElementById("confirm_interest").style.opacity = '50%';
     fetch('/confirm_interest/', {
         method: 'POST',
         headers: {
@@ -76,6 +78,8 @@ const show_interest = (confirm_interest_data) => {
         return response.json();
     })
         .then(data => {
+            event.target.disabled = false;
+            document.getElementById("confirm_interest").style.opacity = '100%';
             if (data.saved) {
                 document.getElementById("confirm_interest").innerHTML = "Remove Interest"
                 return alert("Thank you for showing your interest")
@@ -90,7 +94,7 @@ const show_interest = (confirm_interest_data) => {
         });
 }
 
-const delete_event_alert = () => {
+const delete_post_alert = () => {
     return confirm('Are you sure you want to delete')
 }
 

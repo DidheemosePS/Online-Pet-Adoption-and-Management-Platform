@@ -20,7 +20,7 @@
       {% include 'search_bar.html'%}
       <div class="cards-list">
         {% for post in posts %}
-        <!-- To Show Events -->
+        <!-- To Show posts -->
         <a href="{% url page_url id=post.id %}" class="card">
           <img src="{{ post.pet_image_url }}" class="poster" />
           <div class="card_details">

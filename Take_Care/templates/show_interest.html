@@ -1,11 +1,11 @@
 {% extends 'index.html' %} {% load static %} {% block main %}
-<main class="book_now_main">
+<main class="show_interest_main">
   <img src="{{ post_details.pet_image_url }}" />
-  <div class="book_now_left">
+  <div class="show_interest_left">
     <div>
       <p class="date_time">{{ post_details.updated }}</p>
 
-      <!-- Show the bookmark only to the participants -->
+      <!-- Show the bookmark button only to authenticated users and users are not the owner of the post -->
 
       {% if request.user.is_authenticated and not request.user.id == post_details.owner_id %}
       <button
@@ -71,36 +71,37 @@
         <p class="pet_address">{{ post_details.pet_address }}</p>
       </div>
     </div>
-    <p class="pet_description">{{ post_details.pet_description }}</p>
   </div>
+  <p class="pet_description">{{ post_details.pet_description }}</p>
 
-  <!-- Show the booknow only to the participants -->
+   <!-- Show the show interest button only to authenticated users and users are not the owner of the post -->
+
   {% if request.user.is_authenticated and not request.user.id == post_details.owner_id %}
   <button
     id="confirm_interest"
-    onclick="show_interest({'id': '{{ post_details.id }}','owner':'{{ post_details.owner_id }}' })"
-    class="book_tickets"
+    onclick="show_interest({'id': '{{ post_details.id }}','owner':'{{ post_details.owner_id }}' }, event)"
+    class="show_interest"
   >
     {% if interested %} Remove Interest {% else %} Show Interest {% endif %}
   </button>
   {% endif %}
 
-  <!-- The Edit, Delete button will be shown when the uploaded organisation is logged in by checking request.user.is_organisation and request.user.id == organisation_id -->
+  <!-- The edit, delete buttons will be shown to the post owners only -->
 
   {% if request.user.is_authenticated and request.user.id == post_details.owner_id %}
-  <div class="edit_delete_book_tickets">
+  <div class="edit_delete_show_interest">
     <a
       class="edit_button"
       href="{% url 'edit_created_post' id=post_details.id %}"
     >
-      <p>Edit this event</p>
+      <p>Edit this post</p>
     </a>
     <a
       class="delete_button"
       href="{% url 'delete_created_post' id=post_details.id %}"
-      onclick="return delete_event_alert()"
+      onclick="return delete_post_alert()"
     >
-      <p>Delete this event</p>
+      <p>Delete this post</p>
     </a>
   </div>
   {% endif %}
