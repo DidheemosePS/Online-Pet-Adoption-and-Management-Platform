@@ -27,7 +27,7 @@ def upload_file(file, bucket_name, file_key, content_type):
         s3_client = boto3.client('s3')
         s3_client.upload_fileobj(Fileobj=file, Bucket=bucket_name, Key=file_key, ExtraArgs={'ContentType': content_type})
         object_url = f"https://{bucket_name}.s3.amazonaws.com/{file_key}"
-        return { 'object_url': object_url, 'file_key': file_key }
+        return object_url
     except ClientError as e:
         logging.error(e)
         return False

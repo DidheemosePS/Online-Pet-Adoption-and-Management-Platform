@@ -124,7 +124,10 @@ def create_posts(request):
             create_post = form.save(commit=False)
             create_post.owner_name = request.user
             create_post.owner = request.user
-            create_post.pet_image_url = pet_image_response['object_url']
+            if pet_image_response is not False and pet_image_response is not None:
+                create_post.pet_image_url = pet_image_response
+            else:
+                create_post.pet_image_url = ''
             create_post.save()
             return redirect('posts_created_by_you')
     form = CreatePostsForm()
@@ -221,7 +224,8 @@ def edit_created_post(request, id):
                 content_type = mimetypes.guess_type(pet_image.name)[0]
                 pet_image_response = upload_file(
                     pet_image, 'x23176245-s3-bucket', image_key, content_type)
-                post_edit.pet_image_url = pet_image_response['object_url']
+                if pet_image_response is not False and pet_image_response is not None:
+                    post_edit.pet_image_url = pet_image_response
             form.save()
             request.session['previous_page'] = request.META.get(
                 'HTTP_REFERER', '/')
