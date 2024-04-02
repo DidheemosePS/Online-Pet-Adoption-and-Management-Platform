@@ -6,7 +6,21 @@ phases:
             python: 3.11
         commands:
             - pip install --upgrade pip
-            - pip install -r requirements.txt pylint
+            - pip install asgiref==3.8.1
+            - pip install boto3==1.34.74
+            - pip install botocore==1.34.74
+            - pip install Django==4.2.11
+            - pip install jmespath==1.0.1
+            - pip install python-dateutil==2.9.0.post0
+            - pip install s3transfer==0.10.1
+            - pip install six==1.16.0
+            - pip install sqlparse==0.4.4
+            - pip install typing_extensions==4.10.0
+            - pip install urllib3==1.26.18
+            # Install x23176245_django_emails from the custom index
+            - pip install x23176245_django_emails==0.0.1 -i https://test.pypi.org/simple/
+            # Install pylint
+            - pip install pylint
     pre_build:
         commands:
             - python --version
