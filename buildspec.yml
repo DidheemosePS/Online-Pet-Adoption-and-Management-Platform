@@ -18,7 +18,7 @@ phases:
             - pip install typing_extensions==4.10.0
             - pip install urllib3==1.26.18
             # Install x23176245_django_emails from the custom index
-            - pip install x23176245_django_emails==0.0.1 -i https://test.pypi.org/simple/
+            - pip install -i https://test.pypi.org/simple/ x23176245-django-emails
             # Install pylint
             - pip install pylint
     pre_build:
