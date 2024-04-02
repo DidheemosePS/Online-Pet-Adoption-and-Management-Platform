@@ -9,5 +9,4 @@ six==1.16.0
 sqlparse==0.4.4
 typing_extensions==4.10.0
 urllib3==1.26.18
--i https://test.pypi.org/simple/
-x23176245_django_emails==0.0.1
+x23176245_django_emails==0.0.1 -i https://test.pypi.org/simple/
