@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import site
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,16 +62,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Take_Care_Django.urls'
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_dir = os.path.dirname(os.path.dirname(current_dir))
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # To access the django_email package templetes 
         'DIRS': [
-            os.path.join(project_dir, 'Pet_Adoption_Platform_ENV',
-                         'lib', 'python3.9', 'site-packages', 'django_email', 'templates')
+            os.path.join(site.getsitepackages()[0], 'django_email', 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
