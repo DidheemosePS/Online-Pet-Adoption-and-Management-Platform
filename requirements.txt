@@ -9,4 +9,3 @@ six==1.16.0
 sqlparse==0.4.4
 typing_extensions==4.10.0
 urllib3==1.26.18
-x23176245-django-emails==0.0.1
