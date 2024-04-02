@@ -5,14 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% static 'css/nav_bar.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/search_bar.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/create_posts.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/show_interest.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/interest_showed.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/search_bar.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/create_posts.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/show_interest.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/interest_showed.css' %}" />
   </head>
   <body>
     {% include 'nav_bar.html' %} {% block main %}
@@ -35,5 +35,5 @@
     </main>
     {% endblock %}
   </body>
-  <script src="{% static 'js/index.js' async %}"></script>
+  <script type="text/javascript" src="{% static 'js/index.js' async %}"></script>
 </html>
