@@ -1,17 +1,18 @@
 version: 0.2
+
 phases:
     install:
         runtime-versions:
             python: 3.9
         commands:
             - pip install --upgrade pip
-            # Install dependencies needed for running the static analysis
             - pip install -r requirements.txt pylint
+            
     pre_build:
         commands:
             - python --version
             - pylint $CODEBUILD_SRC_DIR/*.py
-            - pylint $CODEBUILD_SRC_DIR/demoproj/*.py
+            - pylint $CODEBUILD_SRC_DIR/Take_Care_Django/*.py
 artifacts:
     files:
         - '**/*'
