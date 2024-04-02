@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from Take_Care.models import Post
+from take_care.models import Post
 from django import forms
 from django.forms.widgets import PasswordInput, TextInput
 from django.contrib.auth.models import User

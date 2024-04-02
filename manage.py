@@ -4,7 +4,7 @@ import os
 import sys
 
 if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Take_Care_Django.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'take_care_django.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

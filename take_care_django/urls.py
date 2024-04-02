@@ -1,5 +1,5 @@
 """
-URL configuration for Take_Care_Django project.
+URL configuration for take_care_Django project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Take_Care.urls')),
+    path('', include('take_care.urls')),
 ]
