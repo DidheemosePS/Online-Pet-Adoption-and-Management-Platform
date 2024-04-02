@@ -1,10 +1,10 @@
 version: 0.2
 env:
   secrets-manager:
-    LOGIN: prod/sonar:sonartoken
-    HOST: prod/sonar:HOST
-    Organization: sonar:Organization
-    Project: sonar:Project
+    LOGIN: x23176245-Take-Care-Secret:sonartoken
+    HOST: x23176245-Take-Care-Secret:HOST
+    Organization: x23176245-Take-Care-Secret:Organization
+    Project: x23176245-Take-Care-Secret:Project
 phases:
   install:
     runtime-versions:
