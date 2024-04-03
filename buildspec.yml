@@ -25,7 +25,7 @@ phases:
         commands:
             - python --version
             - pylint $CODEBUILD_SRC_DIR/*.py
-            - pylint $CODEBUILD_SRC_DIR/Take_Care_Django/*.py
+            - pylint $CODEBUILD_SRC_DIR/take_care_django/*.py
 artifacts:
     files:
         - '**/*'
