@@ -35,12 +35,12 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ALLOWED_HOSTS = [
-    'x23176245-Take-Care-ENV.eba-vmcxxdqd.eu-west-1.elasticbeanstalk.com',
+    'x23176245-take-care-django-env.eba-netm8iut.eu-west-1.elasticbeanstalk.com',
     'e951283307344cda86f5d9b107401615.vfs.cloud9.eu-west-1.amazonaws.com'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://x23176245-Take-Care-ENV.eba-vmcxxdqd.eu-west-1.elasticbeanstalk.com',
+    'http://x23176245-take-care-django-env.eba-netm8iut.eu-west-1.elasticbeanstalk.com',
     'https://e951283307344cda86f5d9b107401615.vfs.cloud9.eu-west-1.amazonaws.com'
 ]
 
