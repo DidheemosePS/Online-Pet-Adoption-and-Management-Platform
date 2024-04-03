@@ -71,9 +71,8 @@ ROOT_URLCONF = 'take_care_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # To access the django_email package templetes 
         'DIRS': [
-            os.path.join(site.getsitepackages()[0], 'django_email', 'templates')
+            os.path.join(site.getsitepackages()[0], 'django_email', 'templates') # To access the django_email package templetes
         ],
         'APP_DIRS': True,
         'OPTIONS': {
